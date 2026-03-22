@@ -1,42 +1,22 @@
 # Setting Up ARC B50/B60/B570/B580 GPUs with Full Mixed Precision and Intel IPEX Acceleration in PyTorch with Jupyter Labs (Windows)
 
-**NOTE:** For Arc Pro B50/B60 GPUs these instructions are the same, just install the Pro driver instead of the gaming driver.
+These instructions have gone through many iterations since the A770 release. While the Alchemist generation can be pretty quick using openvino for specific models inference the training has always been slow. Battlemage is on the opposite end, it tends to punch wildly above its weight class in specific training scenarios. 
 
-I lost track of when the python xpu WHL got all the backend api bits fully integrated so its possible you no longer need to install oneAPI at all unless you want access to things like DPCPP etc...
-
-These steps are very similar to the non-IPEX instructions but this will allow a significant speed increase in training. In the test BERT program you should see around a 25-35% speed increase. Other types of training will net significantly more speed. 
+Previously you needed to install the full version of oneAPI along with Visual Studio, this is no longer the case. These instruction have been greatly reduced to bring it to the current 2026 state of xpu/ipex for pytorch.
 
 ### Caveats
 
+- Install latest driver, Pro or Gaming depending on your card. 
 - No multi-GPU support in Windows
     - You will not be able to utilize any distributed training technologies for Intel GPUs in windows, this is available via the intel xpu docker container in linux. 
     - This also applies to WSL2, which cannot assign more than a single gpu anyways.
-    - You **can** use multi-gpu for software like LM Studio which will aggregate devices together for inference.
-- Working driver as of this writing: 32.0.101.7026 Arc B580
+    - You **can** use multi-gpu for software like LM Studio which will aggregate devices together for inference when using Vulcan as the backend.
 
-Link to the Intel AI Playground App: <a href="https://game.intel.com/us/stories/introducing-ai-playground/">https://game.intel.com/us/stories/introducing-ai-playground/</a>
-
-## Step 1: Install Visual Studio 2022 Community
-1. <a href="https://visualstudio.microsoft.com/downloads/">https://visualstudio.microsoft.com/downloads/</a>
-2. Within Visual Studio 2022 you want to install the 
-   - **Desktop developement with C++** workload. 
-
-## Step 2: Install the oneAPI 2025.2.1.46
-1. <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html">https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html</a>
-   - Either installation should work
-   - - intel-oneapi-base-toolkit-2025.2.1.46_offline
-   - Package **Intel oneAPI Base Toolkit**
-   - Operating System **Windows**
-   - Installer Type **Offline Installer**
-3. Just click next through the install, defaults are fine.
-4. Reboot your computer.
-5. Once completed you will need to run 2 batch files after your conda environment is installed.
-
-## Step 3: Install Miniconda
+## Step 1: Install Miniconda
 1. <a href="https://docs.anaconda.com/miniconda/install/">https://docs.anaconda.com/miniconda/install/</a>
 2. All the default options during installation should be fine to use.
 
-## Step 4: Create a folder we will use for our Jupyter Labs
+## Step 2: Create a folder we will use for our Jupyter Labs
 1. I will open powershell or cmd and navigate to my dev drive and create a "JUPYTER" folder. This will be the root folder used by Jupyter Labs. You can accomplish this many different ways, using the GUI is probably the easiest.
 ```
 cmd
@@ -47,7 +27,7 @@ mkdir XPU
 exit
 ```
 
-## Step 5: Open an Anaconda Prompt (miniconda)
+## Step 3: Open an Anaconda Prompt (miniconda)
 1. Navigate to your XPU folder
   - In my case this would be `D:\JUPYTER\XPU`
 2. Create a conda environment with python 3.13, named xpu, and then activate the environment.
@@ -73,7 +53,9 @@ conda create -n xpu python=3.13 -y
 conda activate xpu
 ```
 
-## Step 6: Install the required torch packages via pip
+## Step 4: Install the required torch packages via pip
+
+For latest: <a href="https://github.com/intel/intel-extension-for-pytorch">https://github.com/intel/intel-extension-for-pytorch</a>
 
 1. Run the following commands to install the intel torch packages
 ```
@@ -88,7 +70,8 @@ python -m pip install intel-extension-for-pytorch==2.8.10+xpu --extra-index-url 
 ```
 pip install jupyterlab accelerate diffusers tqdm IProgress transformers scikit-learn matplotlib pillow numpy pandas safetensors ipywidgets
 ```
-Install OpenVINO if you plan on optimizing models for Intel hardware
+
+3. Install OpenVINO if you plan on optimizing models for Intel hardware **(OPTIONAL)**
 ```
 conda install -c conda-forge openvino=2025.4.0
 ```
@@ -100,20 +83,13 @@ Download OpenVINO GenAI archives
 ```
 curl -L https://storage.openvinotoolkit.org/repositories/openvino_genai/packages/2025.4/windows/openvino_genai_windows_2025.4.0.0_x86_64.zip --output openvino_genai_2025.4.0.0.zip
 ```
-3. From within your conda environment, run the environment variable activation scripts
-```
-C:\Program Files (x86)\Intel\oneAPI\setvars.bat
-```
-```
-C:\Program Files (x86)\Intel\oneAPI\2025.2\oneapi-vars.bat
-```
 
-5. Run Jupyter Lab, this is a python environment that makes it easy to write code with markdown in a cell based format for rapid testing and visualization.
+4. Run Jupyter Lab, this is a python environment that makes it easy to write code with markdown in a cell based format for rapid testing and visualization.
 ```
 jupyter lab
 ```
 
-## Step 7: Validate XPU is available, run the following in a jupyter lab code cell.
+## Step 5: Validate XPU is available, run the following in a jupyter lab code cell.
 - This may take a few minutes to complete the first run.
 ```
 import torch
@@ -126,15 +102,18 @@ print(torch.__version__)
 # Validate ipex version
 print(ipex.__version__)
 ```
-- If this is showing False or some other error trying rebooting and re-running the *.bat files from Step 2 item 4.
 
-## Step 8: Train your model using torch.amp.autocast('xpu'). Here is an example of 3 code cells.
-1. Check if XPU is available via torch.
+You should  see output similar to:
+
 ```
-import torch
-torch.xpu.is_available()
+True
+2.8.0
+2.8.10+xpu
 ```
-2. Lets generate some data to test with.
+
+## Step 6: Train your model using torch.amp.autocast('xpu'). Here is an example of 3 code cells.
+
+1. Lets generate some data to test with.
 ```
 import os
 import json
@@ -240,7 +219,7 @@ for i in range(TEST_BAD_FILE_COUNT):
     with open(bad_file_path, "w") as f:
         f.write(bad_files[TRAIN_BAD_FILE_COUNT + i])
 ```
-3. Lets train a model with mixed precision using our XPU device.
+2. Lets train a model with mixed precision using our XPU device.
 ```
 import os
 import json
