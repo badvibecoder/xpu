@@ -1,17 +1,5 @@
 #!/bin/bash
 
-# Remove radeon driver, probably should have done this before installing another gpu
-#sudo amdgpu-uninstall
-
-# Remove radeon artifacts if swapping to ARC from RADEON
-# sudo apt remove lact -y
-# sudo systemctl stop lactd
-# sudo systemctl disable lactd
-# sudo rm /usr/lib/systemd/system/lactd.service
-# sudo systemctl daemon-reload
-# sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' /etc/default/grub 
-# sudo update-grub
-
 # Install ARC drivers beyond what is in the kernel
 sudo apt-get update -y
 sudo apt-get install -y software-properties-common
@@ -73,4 +61,3 @@ echo " "
 echo "Check your home directory for xpu-ipex-docker.sh, this will spin up the Intel XPU-Ipex container"
 
 newgrp render
-
