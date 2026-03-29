@@ -1,0 +1,123 @@
+# The Intel AI Ecosystem
+
+This is not a complete list, there is to much to remember. Its more like a menu were you pick things you want.
+
+- **oneAPI**
+    - This is the write once run anywhere library, meaning you can write code and run it on your **GPU/CPU/NPU** without having to change the code.
+    - This contains many components:
+        - **oneAPI DPC++/C++ Compiler**
+            - The core compiler that uses SYCL (a C++ based standard) to allow high-level code to run in parallel across both CPUs and GPUs.
+        - **oneAPI DPC++ Compatibility Tool**
+            - A migration assistant that automates the conversion of legacy CUDA code into portable SYCL/C++ code for Intel hardware.
+        - **oneMLK (Math Kernel Library)**
+            - Highly optimized math routines for operations like matrix multiplication, FFTs, and statistics, which are the fundamental building blocks of AI and scientific computing.
+        - **oneDNN (Deep Neural Network Library)**
+            - A performance library for deep neural networks that provides highly optimized implementations for common operations.
+        - **oneDAL (Data Analytics Library)**
+            - Focuses on accelerating the "traditional" machine learning pipeline, providing optimized algorithms for data preprocessing, regression, and classification.
+        - **oneCCL (Collective Communications Library)**
+            - A library designed to manage communication between multiple nodes or GPUs, essential for distributed training of large models.
+        - **oneVPL (Video Processing Library)**
+            - Provides a single API for hardware-accelerated video decoding, encoding, and processing, leveraging the media engines on your Arc GPU.
+        - **Intel VTune Profiler**
+            - A deep-dive performance analysis tool that helps you find "hotspots" in your code and see exactly how well your GPU or CPU threads are being utilized.
+        - **Intel Advisor**
+            - A design tool that analyzes your code to tell you which parts are best suited for offloading to a GPU and predicts the potential performance gain.
+        - **oneDP (Data Parallel C++ Library)**
+            - A companion to the C++ Standard Library that provides parallel versions of common algorithms (like sort or search) to speed up data-heavy tasks.
+- **Intel Extension for PyTorch (IPEX)**
+    - This bridges Python code to hardware for acceleration within PyTorch.
+    - IPEX contains several components:
+        - **XPU Device Support**
+            - Add device support for intel GPUS which are addresses as xpu devices in PyTorch.
+        - **ipex.optimize()**
+            - This is now rolled into Pytorch for XPU 2.8.+ with the need to call the method specifically.
+            - This original ran the model and optimizer through the IPEX backend to further optimize and compile.
+        - **Graph Mode Optimization**
+            - TorchScript or TorchDynamo to fuse individual operations like LL + ReLU into a single fast operation on hardware.
+        - **XMX/AMX Acceleration**
+            - Offloads to Xe Matrix Entensions on Intel GPU and Advanced Matrix Extensions on CPU.
+        - **Auto Mixed Precision (AMP)**
+            - Manages datatypes allowing for multiple dtypes to be used for increased efficiency.
+        - **INT8 Quantiztion**
+            - Converts models to 8-bit precision to reduce RAM/VRAM footprint and increase inference speed.
+        - **Runtime Extension**
+            - Thread management and cpu core binding to limit CPU impact during GPU offloaded tasks.
+- **IPEX-LLM**
+    - Specialized fork specifically built for accelerating local inference on Intel CPU/GPU/NPU using low bit quanitization.
+    - IPEX-LLM contains several features:
+        - **Low-Latency Inference**
+            - Tunings that shrink time to first token and overal latency when running on consumer/workstation GPUs.
+        - **Weight-Only Quantization (WOQ)**
+            - Optimized kernels for INT4/INT8 quantization to allow very large parameter models to fit on limited VRAM. 
+        - **Ollama Backend**
+            - Leverages Ollama as the backend to run the LLMs.
+        - **PagedAttention**
+            - Increases RAM/VRAM efficiency for KV cache for long-context conversations.
+        - **Speculative Decoding**
+            - Use a faster and smaller draft model to predict tokens which then the main/larger model only verifies for near double performance.
+        - **Distributed Multi-GPU Support**
+            - Specific optimizations are done to allow the scaling of GPUs.
+            - Intra-node scaling for multiple GPUs per node
+            - Multi-socket/numa use Deepspeed to partition nodes between numa nodes.
+            - Inter-node scaling for many GPUs across many nodes using oneCCL.
+- **OpenVINO Toolkit**
+    - A suite of tools that optimize and deploy models on various types of hardware.
+    - OpenVINO tools:
+        - **Model Converter**
+            - Transforms modesl from PyTorch, TensorFlow, ONNX into an OpenVINO IR (Intermiediate Representation) for hardware specific optimization.
+        - **OpenVINO Runtime (Core)**
+            - Lightweight engine that executes optimized models with low latency on CPU/GPU/NPU.
+        - **OpenVINO GenAI Library**
+            - High level library that simplifies running generatives (LLMs/StableDiffusion) with a small amount of code.
+        - **NNCF (Neural Network Compression Framework)**
+            - A set of algorithms for model compression with post-training quantization and sparsity with the goal to reduce RAM/VRAM footprint.
+        - **Model Hub**
+            - A repo of pre-optimized models for things like object detection, face recognition, nlp. 
+        - **AUTO Device Plugin**
+            - Selects the best available hardware available or can even use them simulataneously to balance load when running/optimizing
+- **OpenVINO Model Server (OVMS)**
+    - Standalone service that optimizes models accessed over a network
+    - OVMS Features and Tools:
+        - **Standardized APIs (gRPC & REST)**
+            - Known simple APIs and compatibility with OpenAI, TensorFlow serving APIs
+        - **Remote Inference**
+            - Allows light weight clients to send requests to a central server
+        - **Scalable Deployment**
+            - Built on c++ for high speed, supports Docker and K8
+        - **Multi-Model Serving**
+            - Can host multiple models and versions simulataneously from a single server
+        - **MediaPipe Integration**
+            - Supports complex AI Pipelines like combining gesture control with face tracking
+        - **Python Pre/Post-processing**
+            - Allows you to include custom python code with the server to handle data cleaning, formatting, before sending results back to the client
+- **Intel Neural Compressor (INC)**
+    - Automated model optimization tool that shrinks models for a smaller RAM/VRAM footprint and increased inference speed.
+    - Features:
+        - **Post-Training Quantization (PTQ)**
+            - Converts high-precision models (FP32) to lower precision (Int8/Int4) after training
+        - **AutoRound Algorithm**
+            - High accuracy quantization method that allows LLMs to run at 2 or 4 bit.
+        - **Pruning & Sparsity**
+            - Automatically remove unnecessary neural connections (weights) from a model reducing its size
+        - **Knowledge Distillation**
+            - Smaller model is trained to mimic a larger model resulting in a compact version that retains most of the larger models magic
+        - **Weight-Only Quantization (WOQ)**
+            - Optimized for LLMs, quantizes weights to int4 while keeping activations in higher precision to maintain complex reasoning
+        - **Multi-Framework Support**
+            - Unified interfaces for optimizing models from PyTorch, Tensorflow, ONNX, MXNet
+- **vLLM (Intel Fork)**
+    - Intels custom fork of cLLM for high throughput LLM serving on Intel CPU/GPUs
+    - Features:
+        - **PagedAttention**
+            - Treats KV Cache like virtual memory allowing for much longer conversations without crashing
+        - **Continuous Batching**
+            - Process incoming requests instantly rather than wait for batches to finish, this increases the usage of the GPU
+        - **OpenAI-Compatible API Server**
+            - Wrap your local model in a standard web API to make it a drop in replacement for applications that use ChatGPT
+        - **XPU Backend Integration**
+            - Models use IPEX PyTorch under the hood to access XPU hardware
+        - **Speculative Decoding**
+            - Uses a smaller helper model to guess tokens before the main model confirms them to greatly increase speed
+        - **Distributed Multi-GPU Support**
+            - Supports Tensor Parallelism to split models across multiple XPU devices
