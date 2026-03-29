@@ -30,6 +30,7 @@ mkdir -p ~/jupyter-torch-xpu
 # Build custom docker image based on intel torch and tensorflow containers
 sudo docker build -t mrchanche-xpu-torch-jupyter:2.8.10 -f ~/Github/xpu/xpu-ubuntu-docker/torch-dockerfile/Dockerfile .
 #sudo docker build -t mrchanche-xpu-tensorflow-jupyter:2.15.0 -f ~/Github/xpu/xpu-ubuntu-docker/tensorflow-dockerfile/Dockerfile .
+sudo docker build -t mrchanche-vllm:0.14.1-xpu -f ~/Github/xpu/xpu-ubuntu-docker/intel-vllm/Dockerfile .
 
 # Create xpu-ipex-torch-docker.sh in ~/
 echo '#!/bin/bash' > ~/xpu-ipex-torch-docker.sh
@@ -54,6 +55,22 @@ chmod +x ~/xpu-ipex-torch-docker.sh
 #echo '    -w /jupyter \' >> ~/xpu-ipex-tensorflow-docker.sh
 #echo '    mrchanche-xpu-tensorflow-jupyter:2.15.0' >> ~/xpu-ipex-tensorflow-docker.sh
 #chmod +x ~/xpu-ipex-tensorflow-docker.sh
+
+# Create intel-vllm-docker.sh in ~/
+echo '#!/bin/bash' > ~/intel-vllm-docker.sh
+echo 'docker run -d --name vllm-arc \' >> ~/intel-vllm-docker.sh
+echo '  --device /dev/dri \' >> ~/intel-vllm-docker.sh
+echo '  --net=host \' >> ~/intel-vllm-docker.sh
+echo '  --shm-size="32g" \' >> ~/intel-vllm-docker.sh
+echo '  --privileged \' >> ~/intel-vllm-docker.sh
+echo '  -v ~/.cache/huggingface:/root/.cache/huggingface \' >> ~/intel-vllm-docker.sh
+echo '  intel/vllm:0.14.1-xpu \' >> ~/intel-vllm-docker.sh
+echo '  vllm serve "Qwen/Qwen2.5-Coder-7B-Instruct" \' >> ~/intel-vllm-docker.sh
+echo '  --device xpu \' >> ~/intel-vllm-docker.sh
+echo '  --dtype float16 \' >> ~/intel-vllm-docker.sh
+echo '  --max-model-len 8192 \' >> ~/intel-vllm-docker.sh
+echo '  --gpu-memory-utilization 0.8' >> ~/intel-vllm-docker.sh
+chmod +x ~/intel-vllm-docker.sh
 
 # Wrap up
 echo "Finished, you may need to logout/login for groups to take effect"
