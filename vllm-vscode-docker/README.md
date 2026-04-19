@@ -116,7 +116,65 @@ This validates oneAPI is building and running on our Arc B70.
 
 # Docker Path
 
-After installing and validating docker: `docker pull intel/oneapi-basekit:latest`
+This does not require anything but the driver installation. 
 
-This is the faster/simpler and cleaner route for oneAPI. 
+## Intel vLLM Docker for Continue Extension
 
+URL: https://github.com/intel/ai-containers/blob/main/vllm/0.17.0-xpu.md
+
+Pull the image: `docker pull intel/vllm:0.17.0-xpu`
+
+Run the container:
+
+```bash
+sudo docker run -it --rm \
+  --device /dev/dri:/dev/dri \
+  --device /dev/dri/by-path:/dev/dri/by-path \
+  --net=host \
+  --ipc=host \
+  --shm-size="10g" \
+  --privileged \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  -e HF_TOKEN="hf_xxxxxxxxxxxxxxxxxxxxxxxxxx" \
+  --entrypoint python3 \
+  intel/vllm:0.17.0-xpu \
+  -m vllm.entrypoints.openai.api_server \
+  --model "Qwen/Qwen3-30B-A3B-GPTQ-Int4" \
+  --dtype float16 \
+  --max-model-len 32768 \
+  --gpu-memory-utilization 0.8 \
+  --trust-remote-code
+```
+
+You may need to adjust the max-model-len if you are not using a 32GB gpu.
+
+Keep in mind: https://docs.vllm.ai/en/stable/models/hardware_supported_models/xpu/#text-only-language-models
+
+Not all models work with all tools and even less so with intel on those tools. That website will list all tested models.
+
+To configure an extension like continue:
+
+```yaml
+name: Intel Arc AI Coding
+version: 1.0.0
+schema: v1
+
+models:
+  - name: "Qwen3-30B-A3B-GPTQ-Int4"
+    provider: openai
+    model: "Qwen/Qwen3-30B-A3B-GPTQ-Int4"
+    apiBase: "http://localhost:8000/v1"
+    apiKey: "EMPTY"
+    contextLength: 32768
+
+embeddingsProvider:
+  provider: transformers.js
+
+contextProviders:
+  - name: code
+  - name: docs
+  - name: diff
+  - name: terminal
+```
+
+You can list additional models but realistically only load one at a time. You could also spin up another container and load a code completion model on cpu or a very small one on a high vram GPU but that may impact performance.
