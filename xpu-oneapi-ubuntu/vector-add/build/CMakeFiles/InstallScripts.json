@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/cmake_install.cmake",
+		"/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

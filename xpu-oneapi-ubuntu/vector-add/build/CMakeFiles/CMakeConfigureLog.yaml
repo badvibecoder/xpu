@@ -1,0 +1,1421 @@
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/2026.0/sbin/"
+      - "/home/pcarroll/intel/oneapi/2026.0/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/uname"
+      - "/home/pcarroll/intel/oneapi/2026.0/sbin/uname"
+      - "/home/pcarroll/intel/oneapi/2026.0/uname"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/uname"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/uname"
+      - "/home/pcarroll/.local/bin/uname"
+      - "/usr/local/sbin/uname"
+      - "/usr/local/bin/uname"
+      - "/usr/sbin/uname"
+    found: "/usr/bin/uname"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:14 (project)"
+    message: |
+      The system is: Linux - 7.0.0-22-generic - x86_64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeUnixFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gmake"
+      - "make"
+      - "smake"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/2026.0/sbin/"
+      - "/home/pcarroll/intel/oneapi/2026.0/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/gmake"
+      - "/home/pcarroll/intel/oneapi/2026.0/sbin/gmake"
+      - "/home/pcarroll/intel/oneapi/2026.0/gmake"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/gmake"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/gmake"
+      - "/home/pcarroll/.local/bin/gmake"
+      - "/usr/local/sbin/gmake"
+      - "/usr/local/bin/gmake"
+      - "/usr/sbin/gmake"
+    found: "/usr/bin/gmake"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCompiler.cmake:115 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:71 (_cmake_find_compiler_path)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "icpx"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/2026.0/sbin/"
+      - "/home/pcarroll/intel/oneapi/2026.0/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    found: "/home/pcarroll/intel/oneapi/2026.0/bin/icpx"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "/usr/share/cmake-4.2/Modules/"
+    found: "/usr/share/cmake-4.2/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:14 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /home/pcarroll/intel/oneapi/2026.0/bin/icpx 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is IntelLLVM, found in:
+        /home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/4.2.3/CompilerIdCXX/a.out
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-ar"
+      - "ar"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-ar"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-ar"
+      - "/home/pcarroll/.local/bin/llvm-ar"
+      - "/usr/local/sbin/llvm-ar"
+      - "/usr/local/bin/llvm-ar"
+      - "/usr/sbin/llvm-ar"
+      - "/usr/bin/llvm-ar"
+      - "/sbin/llvm-ar"
+      - "/bin/llvm-ar"
+      - "/usr/games/llvm-ar"
+      - "/usr/local/games/llvm-ar"
+      - "/snap/bin/llvm-ar"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/ar"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/ar"
+      - "/home/pcarroll/.local/bin/ar"
+      - "/usr/local/sbin/ar"
+      - "/usr/local/bin/ar"
+      - "/usr/sbin/ar"
+    found: "/usr/bin/ar"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-ranlib"
+      - "ranlib"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-ranlib"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-ranlib"
+      - "/home/pcarroll/.local/bin/llvm-ranlib"
+      - "/usr/local/sbin/llvm-ranlib"
+      - "/usr/local/bin/llvm-ranlib"
+      - "/usr/sbin/llvm-ranlib"
+      - "/usr/bin/llvm-ranlib"
+      - "/sbin/llvm-ranlib"
+      - "/bin/llvm-ranlib"
+      - "/usr/games/llvm-ranlib"
+      - "/usr/local/games/llvm-ranlib"
+      - "/snap/bin/llvm-ranlib"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/ranlib"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/ranlib"
+      - "/home/pcarroll/.local/bin/ranlib"
+      - "/usr/local/sbin/ranlib"
+      - "/usr/local/bin/ranlib"
+      - "/usr/sbin/ranlib"
+    found: "/usr/bin/ranlib"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-strip"
+      - "strip"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-strip"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-strip"
+      - "/home/pcarroll/.local/bin/llvm-strip"
+      - "/usr/local/sbin/llvm-strip"
+      - "/usr/local/bin/llvm-strip"
+      - "/usr/sbin/llvm-strip"
+      - "/usr/bin/llvm-strip"
+      - "/sbin/llvm-strip"
+      - "/bin/llvm-strip"
+      - "/usr/games/llvm-strip"
+      - "/usr/local/games/llvm-strip"
+      - "/snap/bin/llvm-strip"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/strip"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/strip"
+      - "/home/pcarroll/.local/bin/strip"
+      - "/usr/local/sbin/strip"
+      - "/usr/local/bin/strip"
+      - "/usr/sbin/strip"
+    found: "/usr/bin/strip"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ld.lld"
+      - "ld"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/ld.lld"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/ld.lld"
+      - "/home/pcarroll/.local/bin/ld.lld"
+      - "/usr/local/sbin/ld.lld"
+      - "/usr/local/bin/ld.lld"
+      - "/usr/sbin/ld.lld"
+      - "/usr/bin/ld.lld"
+      - "/sbin/ld.lld"
+      - "/bin/ld.lld"
+      - "/usr/games/ld.lld"
+      - "/usr/local/games/ld.lld"
+      - "/snap/bin/ld.lld"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/ld"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/ld"
+      - "/home/pcarroll/.local/bin/ld"
+      - "/usr/local/sbin/ld"
+      - "/usr/local/bin/ld"
+      - "/usr/sbin/ld"
+    found: "/usr/bin/ld"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-nm"
+      - "nm"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-nm"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-nm"
+      - "/home/pcarroll/.local/bin/llvm-nm"
+      - "/usr/local/sbin/llvm-nm"
+      - "/usr/local/bin/llvm-nm"
+      - "/usr/sbin/llvm-nm"
+      - "/usr/bin/llvm-nm"
+      - "/sbin/llvm-nm"
+      - "/bin/llvm-nm"
+      - "/usr/games/llvm-nm"
+      - "/usr/local/games/llvm-nm"
+      - "/snap/bin/llvm-nm"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/nm"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/nm"
+      - "/home/pcarroll/.local/bin/nm"
+      - "/usr/local/sbin/nm"
+      - "/usr/local/bin/nm"
+      - "/usr/sbin/nm"
+    found: "/usr/bin/nm"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJDUMP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-objdump"
+      - "objdump"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-objdump"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-objdump"
+      - "/home/pcarroll/.local/bin/llvm-objdump"
+      - "/usr/local/sbin/llvm-objdump"
+      - "/usr/local/bin/llvm-objdump"
+      - "/usr/sbin/llvm-objdump"
+      - "/usr/bin/llvm-objdump"
+      - "/sbin/llvm-objdump"
+      - "/bin/llvm-objdump"
+      - "/usr/games/llvm-objdump"
+      - "/usr/local/games/llvm-objdump"
+      - "/snap/bin/llvm-objdump"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/objdump"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/objdump"
+      - "/home/pcarroll/.local/bin/objdump"
+      - "/usr/local/sbin/objdump"
+      - "/usr/local/bin/objdump"
+      - "/usr/sbin/objdump"
+    found: "/usr/bin/objdump"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJCOPY"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-objcopy"
+      - "objcopy"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-objcopy"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-objcopy"
+      - "/home/pcarroll/.local/bin/llvm-objcopy"
+      - "/usr/local/sbin/llvm-objcopy"
+      - "/usr/local/bin/llvm-objcopy"
+      - "/usr/sbin/llvm-objcopy"
+      - "/usr/bin/llvm-objcopy"
+      - "/sbin/llvm-objcopy"
+      - "/bin/llvm-objcopy"
+      - "/usr/games/llvm-objcopy"
+      - "/usr/local/games/llvm-objcopy"
+      - "/snap/bin/llvm-objcopy"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/objcopy"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/objcopy"
+      - "/home/pcarroll/.local/bin/objcopy"
+      - "/usr/local/sbin/objcopy"
+      - "/usr/local/bin/objcopy"
+      - "/usr/sbin/objcopy"
+    found: "/usr/bin/objcopy"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-readelf"
+      - "readelf"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-readelf"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-readelf"
+      - "/home/pcarroll/.local/bin/llvm-readelf"
+      - "/usr/local/sbin/llvm-readelf"
+      - "/usr/local/bin/llvm-readelf"
+      - "/usr/sbin/llvm-readelf"
+      - "/usr/bin/llvm-readelf"
+      - "/sbin/llvm-readelf"
+      - "/bin/llvm-readelf"
+      - "/usr/games/llvm-readelf"
+      - "/usr/local/games/llvm-readelf"
+      - "/snap/bin/llvm-readelf"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/readelf"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/readelf"
+      - "/home/pcarroll/.local/bin/readelf"
+      - "/usr/local/sbin/readelf"
+      - "/usr/local/bin/readelf"
+      - "/usr/sbin/readelf"
+    found: "/usr/bin/readelf"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-dlltool"
+      - "dlltool"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-dlltool"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-dlltool"
+      - "/home/pcarroll/.local/bin/llvm-dlltool"
+      - "/usr/local/sbin/llvm-dlltool"
+      - "/usr/local/bin/llvm-dlltool"
+      - "/usr/sbin/llvm-dlltool"
+      - "/usr/bin/llvm-dlltool"
+      - "/sbin/llvm-dlltool"
+      - "/bin/llvm-dlltool"
+      - "/usr/games/llvm-dlltool"
+      - "/usr/local/games/llvm-dlltool"
+      - "/snap/bin/llvm-dlltool"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/dlltool"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/dlltool"
+      - "/home/pcarroll/.local/bin/dlltool"
+      - "/usr/local/sbin/dlltool"
+      - "/usr/local/bin/dlltool"
+      - "/usr/sbin/dlltool"
+      - "/usr/bin/dlltool"
+      - "/sbin/dlltool"
+      - "/bin/dlltool"
+      - "/usr/games/dlltool"
+      - "/usr/local/games/dlltool"
+      - "/snap/bin/dlltool"
+    found: false
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-addr2line"
+      - "addr2line"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-addr2line"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-addr2line"
+      - "/home/pcarroll/.local/bin/llvm-addr2line"
+      - "/usr/local/sbin/llvm-addr2line"
+      - "/usr/local/bin/llvm-addr2line"
+      - "/usr/sbin/llvm-addr2line"
+      - "/usr/bin/llvm-addr2line"
+      - "/sbin/llvm-addr2line"
+      - "/bin/llvm-addr2line"
+      - "/usr/games/llvm-addr2line"
+      - "/usr/local/games/llvm-addr2line"
+      - "/snap/bin/llvm-addr2line"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/addr2line"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/addr2line"
+      - "/home/pcarroll/.local/bin/addr2line"
+      - "/usr/local/sbin/addr2line"
+      - "/usr/local/bin/addr2line"
+      - "/usr/sbin/addr2line"
+    found: "/usr/bin/addr2line"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "tapi"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/tapi"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/tapi"
+      - "/home/pcarroll/.local/bin/tapi"
+      - "/usr/local/sbin/tapi"
+      - "/usr/local/bin/tapi"
+      - "/usr/sbin/tapi"
+      - "/usr/bin/tapi"
+      - "/sbin/tapi"
+      - "/bin/tapi"
+      - "/usr/games/tapi"
+      - "/usr/local/games/tapi"
+      - "/snap/bin/tapi"
+    found: false
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/Compiler/IntelLLVM-FindBinUtils.cmake:29 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_AR"
+    description: "LLVM archiver"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-ar-2026.0"
+      - "llvm-ar-2026"
+      - "llvm-ar"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin-llvm/"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/compiler/"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin-llvm/llvm-ar-2026.0"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/compiler/llvm-ar-2026.0"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-ar-2026.0"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-ar-2026.0"
+      - "/home/pcarroll/.local/bin/llvm-ar-2026.0"
+      - "/usr/local/sbin/llvm-ar-2026.0"
+      - "/usr/local/bin/llvm-ar-2026.0"
+      - "/usr/sbin/llvm-ar-2026.0"
+      - "/usr/bin/llvm-ar-2026.0"
+      - "/sbin/llvm-ar-2026.0"
+      - "/bin/llvm-ar-2026.0"
+      - "/usr/games/llvm-ar-2026.0"
+      - "/usr/local/games/llvm-ar-2026.0"
+      - "/snap/bin/llvm-ar-2026.0"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin-llvm/llvm-ar-2026"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/compiler/llvm-ar-2026"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-ar-2026"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-ar-2026"
+      - "/home/pcarroll/.local/bin/llvm-ar-2026"
+      - "/usr/local/sbin/llvm-ar-2026"
+      - "/usr/local/bin/llvm-ar-2026"
+      - "/usr/sbin/llvm-ar-2026"
+      - "/usr/bin/llvm-ar-2026"
+      - "/sbin/llvm-ar-2026"
+      - "/bin/llvm-ar-2026"
+      - "/usr/games/llvm-ar-2026"
+      - "/usr/local/games/llvm-ar-2026"
+      - "/snap/bin/llvm-ar-2026"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin-llvm/llvm-ar"
+    found: "/home/pcarroll/intel/oneapi/2026.0/bin/compiler/llvm-ar"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/Compiler/IntelLLVM-FindBinUtils.cmake:40 (find_program)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:14 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_RANLIB"
+    description: "Generate index for LLVM archive"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-ranlib-2026.0"
+      - "llvm-ranlib-2026"
+      - "llvm-ranlib"
+    candidate_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin-llvm/"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/compiler/"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/"
+      - "/home/pcarroll/.local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+    searched_directories:
+      - "/home/pcarroll/intel/oneapi/2026.0/bin-llvm/llvm-ranlib-2026.0"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/compiler/llvm-ranlib-2026.0"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-ranlib-2026.0"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-ranlib-2026.0"
+      - "/home/pcarroll/.local/bin/llvm-ranlib-2026.0"
+      - "/usr/local/sbin/llvm-ranlib-2026.0"
+      - "/usr/local/bin/llvm-ranlib-2026.0"
+      - "/usr/sbin/llvm-ranlib-2026.0"
+      - "/usr/bin/llvm-ranlib-2026.0"
+      - "/sbin/llvm-ranlib-2026.0"
+      - "/bin/llvm-ranlib-2026.0"
+      - "/usr/games/llvm-ranlib-2026.0"
+      - "/usr/local/games/llvm-ranlib-2026.0"
+      - "/snap/bin/llvm-ranlib-2026.0"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin-llvm/llvm-ranlib-2026"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/compiler/llvm-ranlib-2026"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin/llvm-ranlib-2026"
+      - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64/llvm-ranlib-2026"
+      - "/home/pcarroll/.local/bin/llvm-ranlib-2026"
+      - "/usr/local/sbin/llvm-ranlib-2026"
+      - "/usr/local/bin/llvm-ranlib-2026"
+      - "/usr/sbin/llvm-ranlib-2026"
+      - "/usr/bin/llvm-ranlib-2026"
+      - "/sbin/llvm-ranlib-2026"
+      - "/bin/llvm-ranlib-2026"
+      - "/usr/games/llvm-ranlib-2026"
+      - "/usr/local/games/llvm-ranlib-2026"
+      - "/snap/bin/llvm-ranlib-2026"
+      - "/home/pcarroll/intel/oneapi/2026.0/bin-llvm/llvm-ranlib"
+    found: "/home/pcarroll/intel/oneapi/2026.0/bin/compiler/llvm-ranlib"
+    search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "/home/pcarroll/intel/oneapi/2026.0"
+      ENV{PATH}:
+        - "/home/pcarroll/intel/oneapi/vtune/2026.0/bin64"
+        - "/home/pcarroll/intel/oneapi/2026.0/bin"
+        - "/home/pcarroll/.local/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/usr/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:14 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/CMakeScratch/TryCompile-UZknNs"
+      binary: "/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/CMakeScratch/TryCompile-UZknNs"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/CMakeScratch/TryCompile-UZknNs'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e32aa/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e32aa.dir/build.make CMakeFiles/cmTC_e32aa.dir/build
+        gmake[1]: Entering directory '/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/CMakeScratch/TryCompile-UZknNs'
+        Building CXX object CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o
+        /home/pcarroll/intel/oneapi/2026.0/bin/icpx   -v -MD -MT CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp
+        Intel(R) oneAPI DPC++/C++ Compiler 2026.0.0 (2026.0.0.20260331)
+        Target: x86_64-unknown-linux-gnu
+        Thread model: posix
+        InstalledDir: /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler
+        Configuration file: /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../icpx.cfg
+        Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/15
+        Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/15
+        Candidate multilib: .;@m64
+        Selected multilib: .;@m64
+         (in-process)
+         "/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/clang" -cc1 -triple x86_64-unknown-linux-gnu -O2 -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -fveclib=SVML -faltmathlib=SVMLAltMathLibrary -mframe-pointer=none -fapprox-func -funsafe-math-optimizations -fno-signed-zeros -mreassociate -freciprocal-math -fdenormal-fp-math=preserve-sign,preserve-sign -ffp-contract=fast-honor-pragmas -fno-rounding-math -complex-range=promoted -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -mllvm -x86-enable-unaligned-vector-move=true -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/CMakeScratch/TryCompile-UZknNs -v -fcoverage-compilation-dir=/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/CMakeScratch/TryCompile-UZknNs -fclang-abi-compat=22 -resource-dir /home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22 -dependency-file CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -c-isystem /home/pcarroll/intel/oneapi/2026.0/include -cxx-isystem /home/pcarroll/intel/oneapi/2026.0/include -internal-isystem /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../opt/compiler/include -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/x86_64-linux-gnu/c++/15 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/backward -internal-isystem /home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/include -internal-isystem /usr/local/include -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/15/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -ferror-limit 19 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -vectorize-loops -vectorize-slp -mllvm -disable-hir-generate-mkl-call -mllvm -loopopt=1 -floopopt-pipeline=light -mllvm -intel-abi-compatible=true -fdwarf2-cfi-asm -fintel-compatibility -fintel-libirc-allowed -fintel-libimf-allowed -o CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp
+        clang -cc1 version 22.1.0 based upon LLVM 22.1.0 default target x86_64-unknown-linux-gnu
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/15/../../../../x86_64-linux-gnu/include"
+        ignoring nonexistent directory "/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /home/pcarroll/intel/oneapi/2026.0/include
+         /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../opt/compiler/include
+         /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15
+         /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/x86_64-linux-gnu/c++/15
+         /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/backward
+         /home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Linking CXX executable cmTC_e32aa
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e32aa.dir/link.txt --verbose=1
+        Intel(R) oneAPI DPC++/C++ Compiler 2026.0.0 (2026.0.0.20260331)
+        Target: x86_64-unknown-linux-gnu
+        Thread model: posix
+        InstalledDir: /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler
+        Configuration file: /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../icpx.cfg
+        Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/15
+        Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/15
+        Candidate multilib: .;@m64
+        Selected multilib: .;@m64
+         "/usr/bin/ld" -z relro --hash-style=gnu --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_e32aa /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib -L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib -L/home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/lib/x86_64-unknown-linux-gnu -L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib64 -L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib -L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../opt/compiler/lib -L/lib -L/usr/lib -L/home/pcarroll/intel/oneapi/2026.0/lib CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o -Bstatic -lsvml -Bdynamic -Bstatic -lirng -Bdynamic -lstdc++ -Bstatic -limf -Bdynamic -lm -lgcc_s -lgcc -Bstatic -lirc -Bdynamic -ldl -lgcc_s -lgcc -lc -lgcc_s -lgcc -Bstatic -lirc_s -Bdynamic /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /lib/x86_64-linux-gnu/crtn.o
+        /home/pcarroll/intel/oneapi/2026.0/bin/icpx  -v CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_e32aa
+        gmake[1]: Leaving directory '/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/CMakeScratch/TryCompile-UZknNs'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/usr/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:14 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/home/pcarroll/intel/oneapi/2026.0/include]
+          add: [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../opt/compiler/include]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/x86_64-linux-gnu/c++/15]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/backward]
+          add: [/home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/home/pcarroll/intel/oneapi/2026.0/include] ==> [/home/pcarroll/intel/oneapi/2026.0/include]
+        collapse include dir [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../opt/compiler/include] ==> [/home/pcarroll/intel/oneapi/compiler/2026.0/opt/compiler/include]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15] ==> [/usr/include/c++/15]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/x86_64-linux-gnu/c++/15] ==> [/usr/include/x86_64-linux-gnu/c++/15]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/backward] ==> [/usr/include/c++/15/backward]
+        collapse include dir [/home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/include] ==> [/home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/home/pcarroll/intel/oneapi/2026.0/include;/home/pcarroll/intel/oneapi/compiler/2026.0/opt/compiler/include;/usr/include/c++/15;/usr/include/x86_64-linux-gnu/c++/15;/usr/include/c++/15/backward;/home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/usr/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:14 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/CMakeScratch/TryCompile-UZknNs']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e32aa/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_e32aa.dir/build.make CMakeFiles/cmTC_e32aa.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/CMakeScratch/TryCompile-UZknNs']
+        ignore line: [Building CXX object CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/home/pcarroll/intel/oneapi/2026.0/bin/icpx   -v -MD -MT CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Intel(R) oneAPI DPC++/C++ Compiler 2026.0.0 (2026.0.0.20260331)]
+        ignore line: [Target: x86_64-unknown-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler]
+        ignore line: [Configuration file: /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../icpx.cfg]
+        ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/15]
+        ignore line: [Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/15]
+        ignore line: [Candidate multilib: .]
+        ignore line: [@m64]
+        ignore line: [Selected multilib: .]
+        ignore line: [@m64]
+        ignore line: [ (in-process)]
+        ignore line: [ "/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/clang" -cc1 -triple x86_64-unknown-linux-gnu -O2 -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -fveclib=SVML -faltmathlib=SVMLAltMathLibrary -mframe-pointer=none -fapprox-func -funsafe-math-optimizations -fno-signed-zeros -mreassociate -freciprocal-math -fdenormal-fp-math=preserve-sign preserve-sign -ffp-contract=fast-honor-pragmas -fno-rounding-math -complex-range=promoted -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -mllvm -x86-enable-unaligned-vector-move=true -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/CMakeScratch/TryCompile-UZknNs -v -fcoverage-compilation-dir=/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/CMakeScratch/TryCompile-UZknNs -fclang-abi-compat=22 -resource-dir /home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22 -dependency-file CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -c-isystem /home/pcarroll/intel/oneapi/2026.0/include -cxx-isystem /home/pcarroll/intel/oneapi/2026.0/include -internal-isystem /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../opt/compiler/include -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/x86_64-linux-gnu/c++/15 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/backward -internal-isystem /home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/include -internal-isystem /usr/local/include -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/15/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -ferror-limit 19 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -vectorize-loops -vectorize-slp -mllvm -disable-hir-generate-mkl-call -mllvm -loopopt=1 -floopopt-pipeline=light -mllvm -intel-abi-compatible=true -fdwarf2-cfi-asm -fintel-compatibility -fintel-libirc-allowed -fintel-libimf-allowed -o CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [clang -cc1 version 22.1.0 based upon LLVM 22.1.0 default target x86_64-unknown-linux-gnu]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/15/../../../../x86_64-linux-gnu/include"]
+        ignore line: [ignoring nonexistent directory "/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /home/pcarroll/intel/oneapi/2026.0/include]
+        ignore line: [ /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../opt/compiler/include]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/x86_64-linux-gnu/c++/15]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/backward]
+        ignore line: [ /home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Linking CXX executable cmTC_e32aa]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e32aa.dir/link.txt --verbose=1]
+        ignore line: [Intel(R) oneAPI DPC++/C++ Compiler 2026.0.0 (2026.0.0.20260331)]
+        ignore line: [Target: x86_64-unknown-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler]
+        ignore line: [Configuration file: /home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../icpx.cfg]
+        ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/15]
+        ignore line: [Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/15]
+        ignore line: [Candidate multilib: .]
+        ignore line: [@m64]
+        ignore line: [Selected multilib: .]
+        ignore line: [@m64]
+        link line: [ "/usr/bin/ld" -z relro --hash-style=gnu --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_e32aa /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib -L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib -L/home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/lib/x86_64-unknown-linux-gnu -L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib64 -L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib -L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../opt/compiler/lib -L/lib -L/usr/lib -L/home/pcarroll/intel/oneapi/2026.0/lib CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o -Bstatic -lsvml -Bdynamic -Bstatic -lirng -Bdynamic -lstdc++ -Bstatic -limf -Bdynamic -lm -lgcc_s -lgcc -Bstatic -lirc -Bdynamic -ldl -lgcc_s -lgcc -lc -lgcc_s -lgcc -Bstatic -lirc_s -Bdynamic /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /lib/x86_64-linux-gnu/crtn.o]
+          arg [/usr/bin/ld] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_e32aa] ==> ignore
+          arg [/lib/x86_64-linux-gnu/Scrt1.o] ==> obj [/lib/x86_64-linux-gnu/Scrt1.o]
+          arg [/lib/x86_64-linux-gnu/crti.o] ==> obj [/lib/x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o]
+          arg [-L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib] ==> dir [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib]
+          arg [-L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib] ==> dir [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib]
+          arg [-L/home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/lib/x86_64-unknown-linux-gnu] ==> dir [/home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/lib/x86_64-unknown-linux-gnu]
+          arg [-L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib] ==> dir [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/15] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/15]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib64]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib64] ==> dir [/usr/lib64]
+          arg [-L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib] ==> dir [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib]
+          arg [-L/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../opt/compiler/lib] ==> dir [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../opt/compiler/lib]
+          arg [-L/lib] ==> dir [/lib]
+          arg [-L/usr/lib] ==> dir [/usr/lib]
+          arg [-L/home/pcarroll/intel/oneapi/2026.0/lib] ==> dir [/home/pcarroll/intel/oneapi/2026.0/lib]
+          arg [CMakeFiles/cmTC_e32aa.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-Bstatic] ==> search static
+          arg [-lsvml] ==> lib [svml]
+          arg [-Bdynamic] ==> search dynamic
+          arg [-Bstatic] ==> search static
+          arg [-lirng] ==> lib [irng]
+          arg [-Bdynamic] ==> search dynamic
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-Bstatic] ==> search static
+          arg [-limf] ==> lib [imf]
+          arg [-Bdynamic] ==> search dynamic
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-Bstatic] ==> search static
+          arg [-lirc] ==> lib [irc]
+          arg [-Bdynamic] ==> search dynamic
+          arg [-ldl] ==> lib [dl]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-Bstatic] ==> search static
+          arg [-lirc_s] ==> lib [irc_s]
+          arg [-Bdynamic] ==> search dynamic
+          arg [/usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o]
+          arg [/lib/x86_64-linux-gnu/crtn.o] ==> obj [/lib/x86_64-linux-gnu/crtn.o]
+        linker tool for 'CXX': /usr/bin/ld
+        collapse library dir [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib] ==> [/home/pcarroll/intel/oneapi/compiler/2026.0/lib]
+        collapse library dir [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib] ==> [/home/pcarroll/intel/oneapi/compiler/2026.0/lib]
+        collapse library dir [/home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/lib/x86_64-unknown-linux-gnu] ==> [/home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/lib/x86_64-unknown-linux-gnu]
+        collapse library dir [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib] ==> [/home/pcarroll/intel/oneapi/compiler/2026.0/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/15] ==> [/usr/lib/gcc/x86_64-linux-gnu/15]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib64] ==> [/usr/lib64]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib64] ==> [/usr/lib64]
+        collapse library dir [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../lib] ==> [/home/pcarroll/intel/oneapi/compiler/2026.0/lib]
+        collapse library dir [/home/pcarroll/intel/oneapi/compiler/2026.0/bin/compiler/../../opt/compiler/lib] ==> [/home/pcarroll/intel/oneapi/compiler/2026.0/opt/compiler/lib]
+        collapse library dir [/lib] ==> [/lib]
+        collapse library dir [/usr/lib] ==> [/usr/lib]
+        collapse library dir [/home/pcarroll/intel/oneapi/2026.0/lib] ==> [/home/pcarroll/intel/oneapi/2026.0/lib]
+        implicit libs: [svml;irng;stdc++;imf;m;gcc_s;gcc;irc;dl;gcc_s;gcc;c;gcc_s;gcc;irc_s]
+        implicit objs: [/lib/x86_64-linux-gnu/Scrt1.o;/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o;/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/home/pcarroll/intel/oneapi/compiler/2026.0/lib;/home/pcarroll/intel/oneapi/compiler/2026.0/lib/clang/22/lib/x86_64-unknown-linux-gnu;/usr/lib/gcc/x86_64-linux-gnu/15;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/home/pcarroll/intel/oneapi/compiler/2026.0/opt/compiler/lib;/lib;/usr/lib;/home/pcarroll/intel/oneapi/2026.0/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "/usr/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "/usr/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:14 (project)"
+    message: |
+      Running the CXX compiler's linker: "/usr/bin/ld" "-v"
+      GNU ld (GNU Binutils for Ubuntu) 2.46
+...

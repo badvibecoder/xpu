@@ -1,0 +1,6 @@
+/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/edit_cache.dir
+/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/CMakeFiles/rebuild_cache.dir
+/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/src/CMakeFiles/vector-add-buffers.dir
+/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/src/CMakeFiles/cpu-gpu.dir
+/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/src/CMakeFiles/edit_cache.dir
+/home/pcarroll/Github/xpu/xpu-oneapi-ubuntu/vector-add/build/src/CMakeFiles/rebuild_cache.dir
