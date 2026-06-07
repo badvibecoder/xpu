@@ -91,7 +91,7 @@ This is essentially the Hello World.
 
 Navigate to the install dir.
 
-bash```
+```bash
 cd vector-add
 mkdir build
 cd build
