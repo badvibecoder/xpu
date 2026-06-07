@@ -97,6 +97,8 @@ mkdir build
 cd build
 cmake ..
 cmake --build .
+# Windows
+# cmake -G "Ninja" ..
 ./vector-add-buffers
 ```
 
