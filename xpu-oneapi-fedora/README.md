@@ -128,7 +128,25 @@ uv venv .venv --python 3.12
 source .venv/bin/activate
 ```
 
+### Test oneapi compilers
 
+Run: `oneapi-cli`
 
+This may take a minute to load as it pulls data from the repo.
 
+Create a project -> cpp -> Base: Vector Add -> Set your install dir
 
+This is essentially the Hello World.
+
+Navigate to the install dir.
+
+```bash
+cd vector-add
+mkdir build
+cd build
+cmake ..
+cmake --build .
+./vector-add-buffers
+```
+
+If you run into errors with CMakeLists.txt you may need to manually edit the CMake version from x to 3.5+.
