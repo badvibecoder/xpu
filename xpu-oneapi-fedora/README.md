@@ -84,7 +84,11 @@ or
 "cpp": "cd $dir && dpcpp $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
 ```
  
-I will use icpx as dpcpp will be deprecated in the near future and replaced with icpx..
+I will use this script so it does not save the executables and executes with sycl libs:
+
+```bash
+"cpp": "cd $dir && icpx -fsycl $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt && rm -f ./$fileNameWithoutExt",
+```
 
 ### Env Vars
 
