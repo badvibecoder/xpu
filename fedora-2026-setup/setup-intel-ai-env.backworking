@@ -6,11 +6,10 @@ AI_DIR="$HOME/ai"
 SCRIPTS_DIR="$AI_DIR/scripts"
 
 echo "Creating folder structure in $AI_DIR..."
-mkdir -p "$AI_DIR"/{ovms,openvino,pytorch,playground,cache}
+mkdir -p "$AI_DIR"/{ovms,openvino,pytorch,playground}
 mkdir -p "$SCRIPTS_DIR"/{ovms,openvino,pytorch,oneapi,playground,openclaude}
-# Pre-create the cache folders so they are owned by the host user
+# Pre-create the cache folder so it is owned by the host user
 mkdir -p "$AI_DIR/ovms/.ov_cache"
-mkdir -p "$AI_DIR/cache/huggingface"
 
 # ==========================================
 # 1. PyTorch (Native XPU) Setup
@@ -114,9 +113,9 @@ sudo docker run -it --rm \
 EOF
 
 # ==========================================
-# 3. OpenVINO Toolkit & Export Setup
+# 3. OpenVINO Toolkit Setup
 # ==========================================
-echo "Generating OpenVINO Toolkit environment and export scripts..."
+echo "Generating OpenVINO Toolkit environment..."
 cat << 'EOF' > "$SCRIPTS_DIR/openvino/Dockerfile"
 FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
@@ -130,7 +129,6 @@ WORKDIR /workspace
 CMD ["/bin/bash"]
 EOF
 
-# Interactive OpenVINO environment (for manual debugging)
 cat << 'EOF' > "$SCRIPTS_DIR/run-openvino.sh"
 #!/bin/bash
 VIDEO_GID=$(getent group video | cut -d: -f3)
@@ -141,62 +139,9 @@ sudo docker run -it --rm \
     --device /dev/dri \
     -v /dev/dri/by-path:/dev/dri/by-path \
     --group-add $VIDEO_GID --group-add $RENDER_GID \
-    -u $(id -u):$(id -g) \
-    -e HOME="/tmp" \
     -v "$HOME/ai/openvino:/workspace" \
     -w /workspace \
     xpu-openvino:latest
-EOF
-
-# Automated Hugging Face to OVMS Export Pipeline
-cat << 'EOF' > "$SCRIPTS_DIR/export-hf-to-ovms.sh"
-#!/bin/bash
-if [ -z "$1" ] || [ -z "$2" ]; then
-    echo "Usage: ./export-hf-to-ovms.sh <hf-repo-id> <local-model-name> [precision] [hf-token]"
-    echo "Example: ./export-hf-to-ovms.sh meta-llama/Meta-Llama-3-8B-Instruct llama-3-8b int4"
-    exit 1
-fi
-
-REPO_ID=$1
-MODEL_NAME=$2
-PRECISION=${3:-int4}
-HF_TOKEN=$4
-
-TARGET_DIR="/ovms/$MODEL_NAME/1"
-TOKEN_ENV=""
-if [ -n "$HF_TOKEN" ]; then
-    TOKEN_ENV="-e HF_TOKEN=$HF_TOKEN"
-fi
-
-# Ensure the container is built
-sudo docker build -t xpu-openvino:latest -f "$HOME/ai/scripts/openvino/Dockerfile" "$HOME/ai/scripts/openvino" -q
-
-echo "=========================================================="
-echo " Exporting Model: $REPO_ID"
-echo " Precision flag:  $PRECISION"
-echo " Target Folder:   ~/ai/ovms/$MODEL_NAME/1"
-echo "=========================================================="
-
-sudo docker run -it --rm \
-    -u $(id -u):$(id -g) \
-    -e HOME="/tmp" \
-    -e HF_HOME="/cache/huggingface" \
-    $TOKEN_ENV \
-    -v "$HOME/ai/ovms:/ovms" \
-    -v "$HOME/ai/cache/huggingface:/cache/huggingface" \
-    xpu-openvino:latest \
-    optimum-cli export openvino \
-        --model "$REPO_ID" \
-        --task text-generation-with-past \
-        --weight-format "$PRECISION" \
-        --trust-remote-code \
-        "$TARGET_DIR"
-
-echo "=========================================================="
-echo " Pipeline Complete!"
-echo " If successful, start OVMS with:"
-echo " ./run-ovms.sh $MODEL_NAME"
-echo "=========================================================="
 EOF
 
 # ==========================================

@@ -151,15 +151,52 @@ import torch
 print(torch.xpu.is_available())        # Should return True
 print(torch.xpu.get_device_name(0))   # Should output your Intel Arc GPU
 ```
-### 4.5 OpenVINO Toolkit (run-openvino.sh)
+### 4.5 OpenVINO Toolkit Pipeline (export-hf-to-ovms.sh & run-openvino.sh)
 
-Provides an interactive container shell pre-loaded with openvino, openvino-genai, optimum-intel, nncf, and transformers for model conversion, quantization, and offline benchmarking.
+The OpenVINO environment provides a complete pipeline to download, quantize, and export Hugging Face models directly to your OpenVINO Model Server (OVMS) folder structure. It leverages `optimum-cli` to handle the heavy lifting.
+
+### 4.5.1 Automated Export Pipeline (export-hf-to-ovms.sh)
+This wrapper automatically downloads a Hugging Face model to a shared cache, translates it to OpenVINO Intermediate Representation (IR), applies quantization, and outputs the final model to your `~/ai/ovms/` directory.
 
 **Usage:**
 
-```Bash
+```bash
+~/ai/scripts/export-hf-to-ovms.sh <hf-repo-id> <local-model-name> [precision] [hf-token]
+```
+
+Parameters:
+
+- hf-repo-id (Required): The exact Hugging Face model repository ID (e.g., Qwen/Qwen3-Coder-14B-Instruct).
+- local-model-name (Required): The name of the folder created in ~/ai/ovms/ to store the model. OVMS expects this to match the --model_name flag when starting the server.
+- precision (Optional, Default: int4): The weight format. Supported values include int4, int8, and fp16.  
+- hf-token (Optional): A Hugging Face token required to download gated or private models.
+
+Under the Hood:
+
+The script utilizes the following critical flags with optimum-cli:  
+
+-`--task text-generation-with-past`: Ensures the model graph is exported with stateful Key-Value (KV) caching, a strict requirement for efficient text generation on OVMS.
+- `--trust-remote-code`: Allows the compiler to execute the model's custom Python code during the translation process.
+
+Example (Exporting Qwen3 Coder 14B at INT8):
+
+```bash
+~/ai/scripts/export-hf-to-ovms.sh Qwen/Qwen3-Coder-14B-Instruct qwen3-coder-14b int8 YOUR_HF_TOKEN
+```
+
+After a successful export, you can immediately serve the model by running: ./run-ovms.sh qwen3-coder-14b
+
+### 4.5.2 Interactive Shell (run-openvino.sh)
+
+Provides an interactive container shell pre-loaded with openvino, openvino-genai, optimum-intel, nncf, and transformers. This is useful for manual model conversion, advanced graph tweaking, or offline benchmarking.
+
+Usage:
+
+```bash
 ~/ai/scripts/run-openvino.sh
 ```
+
+This maps your local ~/ai/openvino/ directory into the container's /workspace/ folder.
 
 ### 4.6 Intel oneAPI IDE Integration (VS Code Dev Containers)
 
