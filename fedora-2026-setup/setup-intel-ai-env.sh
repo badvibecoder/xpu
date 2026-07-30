@@ -145,7 +145,7 @@ sudo docker run -it --rm \
 EOF
 
 # ==========================================
-# 4. Intel oneAPI BaseKit Setup
+# 4. Intel oneAPI Toolkit Setup
 # ==========================================
 echo "Generating oneAPI environment..."
 cat << 'EOF' > "$SCRIPTS_DIR/run-oneapi.sh"
@@ -153,14 +153,14 @@ cat << 'EOF' > "$SCRIPTS_DIR/run-oneapi.sh"
 VIDEO_GID=$(getent group video | cut -d: -f3)
 RENDER_GID=$(getent group render | cut -d: -f3)
 
-sudo docker pull intel/oneapi-basekit:latest
+sudo docker pull intel/oneapi-toolkit:latest
 sudo docker run -it --rm \
     --device /dev/dri \
     -v /dev/dri/by-path:/dev/dri/by-path \
     --group-add $VIDEO_GID --group-add $RENDER_GID \
     -v "$HOME/ai:/workspace" \
     -w /workspace \
-    intel/oneapi-basekit:latest \
+    intel/oneapi-toolkit:latest \
     /bin/bash
 EOF
 
@@ -196,16 +196,46 @@ sudo docker run -it --rm \
 EOF
 
 # ==========================================
-# 6. OpenClaude Coding Agent Setup
+# 6. OpenClaude "Supercharged" Agent Setup
 # ==========================================
 echo "Generating OpenClaude Coding Agent environment..."
 cat << 'EOF' > "$SCRIPTS_DIR/openclaude/Dockerfile"
-FROM node:22-slim
+# Use Intel oneAPI Toolkit as the base so the agent has native C++, Python, and SYCL/Level Zero drivers
+FROM intel/oneapi-toolkit:latest
 
-RUN apt-get update -y && apt-get install -y git ripgrep && rm -rf /var/lib/apt/lists/*
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 1. Install Node.js 22, Network Tools, and Dev Utilities
+RUN apt-get update -y && \
+    apt-get install -y ca-certificates curl gnupg && \
+    mkdir -p /etc/apt/keyrings && \
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_22.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list && \
+    apt-get update -y && \
+    apt-get install -y \
+        nodejs \
+        iputils-ping dnsutils openssh-client telnet netcat-openbsd curl wget iproute2 \
+        build-essential gdb cmake git ripgrep jq bash \
+        python3 python3-pip && \
+    rm -rf /var/lib/apt/lists/*
+
+# 2. Install Odin Compiler (Pulls the latest Linux/AMD64 release)
+RUN cd /opt && \
+    LATEST_URL=$(curl -sL https://api.github.com/repos/odin-lang/Odin/releases/latest | grep -o '"browser_download_url": "[^"]*linux[^"]*amd64[^"]*\.tar\.gz"' | head -1 | cut -d'"' -f4) && \
+    if [ -z "$LATEST_URL" ]; then \
+        echo "Falling back to known Odin release..."; \
+        LATEST_URL="https://github.com/odin-lang/Odin/releases/download/dev-2025-12a/odin-linux-amd64-dev-2025-12a.tar.gz"; \
+    fi && \
+    wget -q "$LATEST_URL" -O odin.tar.gz && \
+    mkdir odin && \
+    tar -xzf odin.tar.gz -C odin --strip-components=1 && \
+    ln -s /opt/odin/odin /usr/local/bin/odin && \
+    rm odin.tar.gz
+
+# 3. Install OpenClaude
 RUN npm install -g @gitlawb/openclaude@latest
 
-# Pre-create the agent's home folder with global write access to prevent silent permission crashes
+# 4. Pre-create the agent's home folder with global write access
 RUN mkdir -p /home/agent && chmod 777 /home/agent
 
 ENTRYPOINT ["openclaude"]
@@ -213,6 +243,9 @@ EOF
 
 cat << 'EOF' > "$SCRIPTS_DIR/run-openclaude.sh"
 #!/bin/bash
+VIDEO_GID=$(getent group video | cut -d: -f3)
+RENDER_GID=$(getent group render | cut -d: -f3)
+
 sudo docker build -t xpu-openclaude:latest -f "$HOME/ai/scripts/openclaude/Dockerfile" "$HOME/ai/scripts/openclaude" -q
 
 mkdir -p "$HOME/.openclaude"
@@ -222,9 +255,12 @@ if [ -f "$HOME/.gitconfig" ]; then
     GIT_MOUNT="-v $HOME/.gitconfig:/home/agent/.gitconfig:ro"
 fi
 
-# Run natively mapped to your current directory with TTY and User fix
+# Run mapped to current directory with GPU access, networking, and User fix
 sudo docker run -it --rm \
     --network host \
+    --device /dev/dri \
+    -v /dev/dri/by-path:/dev/dri/by-path \
+    --group-add $VIDEO_GID --group-add $RENDER_GID \
     -u $(id -u):$(id -g) \
     -v /etc/passwd:/etc/passwd:ro \
     -v /etc/group:/etc/group:ro \
@@ -234,6 +270,7 @@ sudo docker run -it --rm \
     -e CLAUDE_CODE_USE_OPENAI="1" \
     -e OPENAI_BASE_URL="http://127.0.0.1:8000/v3/" \
     -e OPENAI_API_KEY="ovms" \
+    -e CLAUDE_PROJECT_DETECTION="loose" \
     -v "$PWD:/workspace" \
     $GIT_MOUNT \
     -w /workspace \
