@@ -161,14 +161,89 @@ Provides an interactive container shell pre-loaded with openvino, openvino-genai
 ~/ai/scripts/run-openvino.sh
 ```
 
-### 4.6 Intel oneAPI BaseKit (run-oneapi.sh)
+### 4.6 Intel oneAPI IDE Integration (VS Code Dev Containers)
 
-Provides an interactive shell with the full Intel oneAPI toolchain (dpcpp, icx, clinfo, Level Zero drivers) for native SYCL/DPC++ C++ development.
+For native C++ and SYCL development targeting Intel Arc GPUs, you can mount project folders directly into an isolated VS Code Dev Container using the unified `intel/oneapi-toolkit` environment.
 
-**Usage:**
+#### Required VS Code Extensions
+From the VS Code Marketplace, search for and install:
+* **Dev Containers** (`ms-vscode-remote.remote-containers`)
 
-```Bash
-~/ai/scripts/run-oneapi.sh
+#### Project Directory Setup
+To create a clean workspace with container isolation, navigate to your desired project location and initialize the required folder structure:
+
+```bash
+# 1. Create and navigate into your project root
+mkdir -p ~/projects/sycl-demo && cd ~/projects/sycl-demo
+
+# 2. Create the hidden .devcontainer configuration directory
+mkdir -p .devcontainer
+```
+
+Creating `.devcontainer/devcontainer.json`
+
+Inside `.devcontainer/devcontainer.json`, define the container configuration, GPU device mappings, and automatic extension installation:
+
+```json
+{
+  "name": "Intel oneAPI XPU Environment",
+  "image": "intel/oneapi-toolkit:latest",
+  "containerUser": "root",
+  "runArgs": [
+    "--device=/dev/dri",
+    "--net=host"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "intel-corporation.oneapi-analysis-configurator"
+      ]
+    }
+  },
+  "postStartCommand": "echo 'source /opt/intel/oneapi/setvars.sh' >> ~/.bashrc"
+}
+```
+
+Engaging the Container Environment in VS Code
+
+Open VS Code: `code ~/projects/sycl-demo`
+
+Open the Command Palette `(Ctrl + Shift + P)`.
+
+Run: `Dev Containers: Reopen in Container`.
+
+VS Code will pull/build the image and re-attach the workspace inside the container.
+
+Manual Terminal Build & Run Workflow
+Once attached to the container, open the integrated terminal `(Ctrl + ~)`. The setvars.sh environment script will automatically source, providing full access to `icpx`.
+
+Create a test SYCL file `(main.cpp)`:
+
+#include <sycl/sycl.hpp>
+#include <iostream>
+
+```cpp
+int main() {
+    sycl::queue q;
+    std::cout << "Selected Device: " 
+              << q.get_device().get_info<sycl::info::device::name>() 
+              << std::endl;
+    return 0;
+}
+```
+
+Compile with `icpx` (SYCL flag enabled):
+
+```bash
+icpx -fsycl main.cpp -o sycl_app
+```
+
+Execute the binary:
+
+```bash
+./sycl_app
 ```
 
 ### 4.7 AI Playground (run-playground.sh)
