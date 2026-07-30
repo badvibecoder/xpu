@@ -38,33 +38,47 @@ Running the setup script establishes a centralized `$HOME/ai` directory structur
     ├── run-openvino.sh        # OpenVINO SDK interactive container launcher
     ├── run-oneapi.sh          # Intel oneAPI BaseKit environment wrapper
     └── run-playground.sh      # AI Playground container wrapper
-3. Master Setup Script (setup-intel-ai-env.sh)
-Purpose
+```
+
+## 3. Master Setup Script (setup-intel-ai-env.sh)
+
+**Purpose**
+
 The setup-intel-ai-env.sh script acts as the single source of truth for the entire setup. It dynamically detects host hardware render groups (video and render GIDs) to configure Docker containers with seamless host GPU hardware access (/dev/dri).
 
-Usage
-Bash
+***Usage***
+
+```Bash
 # 1. Make the master script executable
 chmod +x ~/setup-intel-ai-env.sh
 
 # 2. Run the master script to generate all execution scripts and directory structures
 ~/setup-intel-ai-env.sh
-4. Generated Scripts & Operational Guide
-4.1 Model Downloader (download-hf-ovms.sh)
+```
+
+## 4. Generated Scripts & Operational Guide
+
+### 4.1 Model Downloader (download-hf-ovms.sh)
+
 Downloads OpenVINO-quantized HuggingFace models directly into the standard OVMS directory structure while preserving host file ownership.
 
-Usage:
+**Usage:**
 
-Bash
+```Bash
 ~/ai/scripts/download-hf-ovms.sh <huggingface-repo-id> <local-model-name>
+```
+
 Example:
 
-Bash
+```Bash
 ~/ai/scripts/download-hf-ovms.sh OpenVINO/Qwen3-Coder-30B-A3B-Instruct-int4-ov Qwen3-Coder-30B-A3B-Instruct-int4-ov
-4.2 OpenVINO Model Server (run-ovms.sh)
+```
+
+### 4.2 OpenVINO Model Server (run-ovms.sh)
+
 Hosts downloaded LLMs using the official Intel GPU-accelerated OVMS image. It exposes OpenAI-compatible REST API endpoints at http://localhost:8000/v3/.
 
-Key Capabilities:
+**Key Capabilities:**
 
 Uses --task text_generation to enable Continuous Batching and Paged Attention.
 
@@ -72,93 +86,124 @@ Compiles high-performance execution graphs directly to Intel Arc via --target_de
 
 Caches compiled graphs in ~/ai/ovms/.ov_cache to ensure instant subsequent boots.
 
-Usage:
+**Usage:**
 
-Bash
+```Bash
 ~/ai/scripts/run-ovms.sh <model_folder_name>
-Example:
+```
 
-Bash
+**Example:**
+
+```Bash
 ~/ai/scripts/run-ovms.sh Qwen3-Coder-30B-A3B-Instruct-int4-ov
-Verification:
+```
+
+**Verification:**
+
 Open a separate terminal and test the model server endpoint:
 
-Bash
+```Bash
 curl http://localhost:8000/v3/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
     "model": "Qwen3-Coder-30B-A3B-Instruct-int4-ov",
     "messages": [{"role": "user", "content": "Respond with: Ready"}]
   }'
-4.3 OpenClaude AI Coding Agent (run-openclaude.sh)
+```
+
+### 4.3 OpenClaude AI Coding Agent (run-openclaude.sh)
+
 Launches the OpenClaude terminal coding agent isolated inside a container while mapping host capabilities.
 
-Key Capabilities:
+**Key Capabilities:**
 
-Configured via -e CLAUDE_CODE_USE_OPENAI="1" and -e OPENAI_BASE_URL="http://127.0.0.1:8000/v3/" to route directly to local OVMS LLMs.
+Configured via `-e CLAUDE_CODE_USE_OPENAI="1"` and `-e OPENAI_BASE_URL="http://127.0.0.1:8000/v3/"` to route directly to local OVMS LLMs.
 
 Dynamically mounts your current host working directory (-v "$PWD:/workspace") so it can read and edit code files natively.
 
-Preserves user UID/GID (-u $(id -u):$(id -g)) and host user mapping (/etc/passwd), ensuring code modified by the agent remains owned by you.
+Preserves user UID/GID `(-u $(id -u):$(id -g))` and host user mapping (/etc/passwd), ensuring code modified by the agent remains owned by you.
 
-Usage:
+**Usage:**
+
 Navigate to any project directory on your machine and start the agent:
 
-Bash
+```ash
 cd /path/to/your/code-project
 ~/ai/scripts/run-openclaude.sh --model Qwen3-Coder-30B-A3B-Instruct-int4-ov
-4.4 PyTorch with Native XPU (run-pytorch.sh)
+```
+
+### 4.4 PyTorch with Native XPU (run-pytorch.sh)
+
 Launches an interactive JupyterLab environment running Intel's official PyTorch image, compiled with native SYCL/XPU device acceleration.
 
-Usage:
+**Usage:**
 
-Bash
+```Bash
 ~/ai/scripts/run-pytorch.sh
-Access: Open http://localhost:8888 in your browser.
+```
+
+**Access:** Open http://localhost:8888 in your browser.
 
 Verification inside Jupyter:
 
-Python
+```Python
 import torch
 print(torch.xpu.is_available())        # Should return True
 print(torch.xpu.get_device_name(0))   # Should output your Intel Arc GPU
-4.5 OpenVINO Toolkit (run-openvino.sh)
+```
+### 4.5 OpenVINO Toolkit (run-openvino.sh)
+
 Provides an interactive container shell pre-loaded with openvino, openvino-genai, optimum-intel, nncf, and transformers for model conversion, quantization, and offline benchmarking.
 
-Usage:
+**Usage:**
 
-Bash
+```Bash
 ~/ai/scripts/run-openvino.sh
-4.6 Intel oneAPI BaseKit (run-oneapi.sh)
+```
+
+### 4.6 Intel oneAPI BaseKit (run-oneapi.sh)
+
 Provides an interactive shell with the full Intel oneAPI toolchain (dpcpp, icx, clinfo, Level Zero drivers) for native SYCL/DPC++ C++ development.
 
-Usage:
+**Usage:**
 
-Bash
+```Bash
 ~/ai/scripts/run-oneapi.sh
-4.7 AI Playground (run-playground.sh)
+```
+
+### 4.7 AI Playground (run-playground.sh)
 A utility environment prepared for hosting local Web UIs (Gradio, Streamlit, or Intel AI Playground) mapped to port 7860.
 
-Usage:
+**Usage:**
 
-Bash
+```Bash
 ~/ai/scripts/run-playground.sh
-5. Typical Workflow Example
-Bootstrap Environment:
+```
 
-Bash
+## 5. Typical Workflow Example
+
+**Bootstrap Environment:**
+
+```Bash
 chmod +x setup-intel-ai-env.sh
 ./setup-intel-ai-env.sh
-Download an OpenVINO Model:
+```
 
-Bash
+**Download an OpenVINO Model:**
+
+```Bash
 ~/ai/scripts/download-hf-ovms.sh OpenVINO/Qwen3-Coder-30B-A3B-Instruct-int4-ov Qwen3-Coder-30B-A3B-Instruct-int4-ov
-Start the OpenVINO GPU Server:
+```
 
-Bash
+**Start the OpenVINO GPU Server:**
+
+```Bash
 ~/ai/scripts/run-ovms.sh Qwen3-Coder-30B-A3B-Instruct-int4-ov
-Launch OpenClaude Agent in a Project Folder:
+```
 
-Bash
+**Launch OpenClaude Agent in a Project Folder:**
+
+```Bash
 cd ~/Github/my-python-app
 ~/ai/scripts/run-openclaude.sh --model Qwen3-Coder-30B-A3B-Instruct-int4-ov
+```
