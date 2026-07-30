@@ -165,18 +165,34 @@ sudo docker run -it --rm \
 EOF
 
 # ==========================================
-# 5. Intel AI Playground Setup
+# 5. Intel AI Playground Setup (GUI & Web)
 # ==========================================
 echo "Generating Intel AI Playground environment..."
 cat << 'EOF' > "$SCRIPTS_DIR/playground/Dockerfile"
 FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
+
+# 1. Install prerequisites: GUI, Audio, Intel Compute Runtime, and OpenVINO Backend Dependencies
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
-    curl wget git python3-pip python3-venv libgl1 libglib2.0-0 clinfo pciutils xz-utils && rm -rf /var/lib/apt/lists/*
-RUN python3 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
+    curl wget git python3-pip python3-venv libgl1 libglib2.0-0 \
+    clinfo pciutils xz-utils ca-certificates \
+    libx11-6 libxext6 libxrender1 libxrandr2 libxtst6 libxi6 \
+    libasound2t64 libasound2-data \
+    intel-opencl-icd intel-level-zero-gpu level-zero \
+    build-essential python3-dev libtbb12 libhwloc15 libgomp1 libnuma1 libpython3.12 \
+    && rm -rf /var/lib/apt/lists/*
+
+# 2. Download and install the AI Playground .deb package
+RUN wget -q "https://github.com/intel/AI-Playground/releases/download/v3.1.2-beta_hf3/AI-Playground-installer.deb" -O /tmp/ai-playground.deb && \
+    apt-get update -y && \
+    apt-get install -y /tmp/ai-playground.deb && \
+    rm /tmp/ai-playground.deb && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /playground
-CMD ["/bin/bash"]
+
+# 3. Auto-launch the Electron app with the mandatory Docker sandbox flag
+CMD ["ai-playground", "--no-sandbox"]
 EOF
 
 cat << 'EOF' > "$SCRIPTS_DIR/run-playground.sh"
@@ -184,13 +200,25 @@ cat << 'EOF' > "$SCRIPTS_DIR/run-playground.sh"
 VIDEO_GID=$(getent group video | cut -d: -f3)
 RENDER_GID=$(getent group render | cut -d: -f3)
 
-sudo docker build -t xpu-playground:latest -f "$HOME/ai/scripts/playground/Dockerfile" "$HOME/ai/scripts/playground"
+# Allow local Docker containers to connect to the host's X11 display server
+xhost +local:docker > /dev/null 2>&1
+
+# FORCE a clean build to ensure the missing libraries are actually downloaded
+sudo docker build --no-cache -t xpu-playground:latest -f "$HOME/ai/scripts/playground/Dockerfile" "$HOME/ai/scripts/playground"
+
+# Launch the app with full X11 mapping and local persistence
 sudo docker run -it --rm \
-    -p 7860:7860 \
+    --network host \
+    -e DISPLAY=$DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
     --device /dev/dri \
     -v /dev/dri/by-path:/dev/dri/by-path \
     --group-add $VIDEO_GID --group-add $RENDER_GID \
+    -u $(id -u):$(id -g) \
+    -v /etc/passwd:/etc/passwd:ro \
+    -v /etc/group:/etc/group:ro \
     -v "$HOME/ai/playground:/playground" \
+    -e HOME="/playground" \
     -w /playground \
     xpu-playground:latest
 EOF
