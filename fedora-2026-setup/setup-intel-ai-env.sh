@@ -74,7 +74,7 @@ sudo docker run -it --rm \
     -e HOME="/models" \
     python:3.12-slim \
     bash -c "pip install --quiet --no-cache-dir huggingface_hub && \
-             HF_XET_HIGH_PERFORMANCE=1 hf download $REPO_ID --local-dir $TARGET_DIR"
+             HF_XET_HIGH_PERFORMANCE=1 /models/.local/bin/hf download $REPO_ID --local-dir $TARGET_DIR"
 
 echo "=========================================================="
 echo " Success! Start OVMS with: ~/ai/scripts/run-ovms.sh $MODEL_NAME"
