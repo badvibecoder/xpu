@@ -2,7 +2,7 @@
 # setup-intel-ai-env.sh
 # Master Setup Script: Generates a standardized Intel Arc / XPU Docker environment.
 
-AI_DIR="$HOME/ai"
+AI_DIR="$HOME/Dev/intel-envs"
 SCRIPTS_DIR="$AI_DIR/scripts"
 
 echo "Creating folder structure in $AI_DIR..."
@@ -29,18 +29,21 @@ WORKDIR /jupyter
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--NotebookApp.notebook_dir=/jupyter"]
 EOF
 
-cat << 'EOF' > "$SCRIPTS_DIR/run-pytorch.sh"
+cat << EOF > "$SCRIPTS_DIR/run-pytorch.sh"
 #!/bin/bash
+AI_DIR="${AI_DIR}"
+EOF
+cat << 'EOF' >> "$SCRIPTS_DIR/run-pytorch.sh"
 VIDEO_GID=$(getent group video | cut -d: -f3)
 RENDER_GID=$(getent group render | cut -d: -f3)
 
-sudo docker build -t xpu-pytorch:latest -f "$HOME/ai/scripts/pytorch/Dockerfile" "$HOME/ai/scripts/pytorch"
+sudo docker build -t xpu-pytorch:latest -f "$AI_DIR/scripts/pytorch/Dockerfile" "$AI_DIR/scripts/pytorch"
 sudo docker run -it --rm \
     -p 8888:8888 \
     --device /dev/dri \
     -v /dev/dri/by-path:/dev/dri/by-path \
     --group-add $VIDEO_GID --group-add $RENDER_GID \
-    -v "$HOME/ai/pytorch:/jupyter" \
+    -v "$AI_DIR/pytorch:/jupyter" \
     -w /jupyter \
     xpu-pytorch:latest
 EOF
@@ -50,8 +53,11 @@ EOF
 # ==========================================
 echo "Generating OVMS utilities and environment..."
 
-cat << 'EOF' > "$SCRIPTS_DIR/download-hf-ovms.sh"
+cat << EOF > "$SCRIPTS_DIR/download-hf-ovms.sh"
 #!/bin/bash
+AI_DIR="${AI_DIR}"
+EOF
+cat << 'EOF' >> "$SCRIPTS_DIR/download-hf-ovms.sh"
 if [ -z "$1" ] || [ -z "$2" ]; then
     echo "Usage: ./download-hf-ovms.sh <huggingface-repo-id> <local-model-name>"
     echo "Example: ./download-hf-ovms.sh OpenVINO/Qwen1.5-7B-Chat-int8-ov qwen-chat"
@@ -64,29 +70,32 @@ TARGET_DIR="/models/$MODEL_NAME/1"
 
 echo "=========================================================="
 echo " Downloading $REPO_ID"
-echo " Destination: ~/ai/ovms/$MODEL_NAME/1"
+echo " Destination: $AI_DIR/ovms/$MODEL_NAME/1"
 echo "=========================================================="
 
 # We map the user ID here as well so downloaded models are owned by you, not root
 sudo docker run -it --rm \
     -u $(id -u):$(id -g) \
-    -v "$HOME/ai/ovms:/models" \
+    -v "$AI_DIR/ovms:/models" \
     -e HOME="/models" \
     python:3.12-slim \
     bash -c "pip install --quiet --no-cache-dir huggingface_hub && \
              HF_XET_HIGH_PERFORMANCE=1 /models/.local/bin/hf download $REPO_ID --local-dir $TARGET_DIR"
 
 echo "=========================================================="
-echo " Success! Start OVMS with: ~/ai/scripts/run-ovms.sh $MODEL_NAME"
+echo " Success! Start OVMS with: $AI_DIR/scripts/run-ovms.sh $MODEL_NAME"
 echo "=========================================================="
 EOF
 
-cat << 'EOF' > "$SCRIPTS_DIR/run-ovms.sh"
+cat << EOF > "$SCRIPTS_DIR/run-ovms.sh"
 #!/bin/bash
+AI_DIR="${AI_DIR}"
+EOF
+cat << 'EOF' >> "$SCRIPTS_DIR/run-ovms.sh"
 if [ -z "$1" ]; then
     echo "Usage: ./run-ovms.sh <model_folder_name>"
-    echo "Available models in $HOME/ai/ovms:"
-    ls -1 "$HOME/ai/ovms" | grep -v ".ov_cache"
+    echo "Available models in $AI_DIR/ovms:"
+    ls -1 "$AI_DIR/ovms" | grep -v ".ov_cache"
     exit 1
 fi
 
@@ -103,7 +112,7 @@ sudo docker run -it --rm \
     --device /dev/dri \
     -v /dev/dri/by-path:/dev/dri/by-path \
     --group-add $VIDEO_GID --group-add $RENDER_GID \
-    -v "$HOME/ai/ovms:/models" \
+    -v "$AI_DIR/ovms:/models" \
     openvino/model_server:latest-gpu \
     --port 9000 --rest_port 8000 \
     --model_name "$MODEL_NAME" \
@@ -131,26 +140,32 @@ CMD ["/bin/bash"]
 EOF
 
 # Interactive OpenVINO environment (for manual debugging)
-cat << 'EOF' > "$SCRIPTS_DIR/run-openvino.sh"
+cat << EOF > "$SCRIPTS_DIR/run-openvino.sh"
 #!/bin/bash
+AI_DIR="${AI_DIR}"
+EOF
+cat << 'EOF' >> "$SCRIPTS_DIR/run-openvino.sh"
 VIDEO_GID=$(getent group video | cut -d: -f3)
 RENDER_GID=$(getent group render | cut -d: -f3)
 
-sudo docker build -t xpu-openvino:latest -f "$HOME/ai/scripts/openvino/Dockerfile" "$HOME/ai/scripts/openvino"
+sudo docker build -t xpu-openvino:latest -f "$AI_DIR/scripts/openvino/Dockerfile" "$AI_DIR/scripts/openvino"
 sudo docker run -it --rm \
     --device /dev/dri \
     -v /dev/dri/by-path:/dev/dri/by-path \
     --group-add $VIDEO_GID --group-add $RENDER_GID \
     -u $(id -u):$(id -g) \
     -e HOME="/tmp" \
-    -v "$HOME/ai/openvino:/workspace" \
+    -v "$AI_DIR/openvino:/workspace" \
     -w /workspace \
     xpu-openvino:latest
 EOF
 
 # Automated Hugging Face to OVMS Export Pipeline
-cat << 'EOF' > "$SCRIPTS_DIR/export-hf-to-ovms.sh"
+cat << EOF > "$SCRIPTS_DIR/export-hf-to-ovms.sh"
 #!/bin/bash
+AI_DIR="${AI_DIR}"
+EOF
+cat << 'EOF' >> "$SCRIPTS_DIR/export-hf-to-ovms.sh"
 if [ -z "$1" ] || [ -z "$2" ]; then
     echo "Usage: ./export-hf-to-ovms.sh <hf-repo-id> <local-model-name> [precision] [hf-token]"
     echo "Example: ./export-hf-to-ovms.sh meta-llama/Meta-Llama-3-8B-Instruct llama-3-8b int4"
@@ -169,12 +184,12 @@ if [ -n "$HF_TOKEN" ]; then
 fi
 
 # Ensure the container is built
-sudo docker build -t xpu-openvino:latest -f "$HOME/ai/scripts/openvino/Dockerfile" "$HOME/ai/scripts/openvino" -q
+sudo docker build -t xpu-openvino:latest -f "$AI_DIR/scripts/openvino/Dockerfile" "$AI_DIR/scripts/openvino" -q
 
 echo "=========================================================="
 echo " Exporting Model: $REPO_ID"
 echo " Precision flag:  $PRECISION"
-echo " Target Folder:   ~/ai/ovms/$MODEL_NAME/1"
+echo " Target Folder:   $AI_DIR/ovms/$MODEL_NAME/1"
 echo "=========================================================="
 
 sudo docker run -it --rm \
@@ -182,8 +197,8 @@ sudo docker run -it --rm \
     -e HOME="/tmp" \
     -e HF_HOME="/cache/huggingface" \
     $TOKEN_ENV \
-    -v "$HOME/ai/ovms:/ovms" \
-    -v "$HOME/ai/cache/huggingface:/cache/huggingface" \
+    -v "$AI_DIR/ovms:/ovms" \
+    -v "$AI_DIR/cache/huggingface:/cache/huggingface" \
     xpu-openvino:latest \
     optimum-cli export openvino \
         --model "$REPO_ID" \
@@ -203,8 +218,11 @@ EOF
 # 4. Intel oneAPI Toolkit Setup
 # ==========================================
 echo "Generating oneAPI environment..."
-cat << 'EOF' > "$SCRIPTS_DIR/run-oneapi.sh"
+cat << EOF > "$SCRIPTS_DIR/run-oneapi.sh"
 #!/bin/bash
+AI_DIR="${AI_DIR}"
+EOF
+cat << 'EOF' >> "$SCRIPTS_DIR/run-oneapi.sh"
 VIDEO_GID=$(getent group video | cut -d: -f3)
 RENDER_GID=$(getent group render | cut -d: -f3)
 
@@ -213,7 +231,7 @@ sudo docker run -it --rm \
     --device /dev/dri \
     -v /dev/dri/by-path:/dev/dri/by-path \
     --group-add $VIDEO_GID --group-add $RENDER_GID \
-    -v "$HOME/ai:/workspace" \
+    -v "$AI_DIR:/workspace" \
     -w /workspace \
     intel/oneapi-toolkit:latest \
     /bin/bash
@@ -250,8 +268,11 @@ WORKDIR /playground
 CMD ["ai-playground", "--no-sandbox"]
 EOF
 
-cat << 'EOF' > "$SCRIPTS_DIR/run-playground.sh"
+cat << EOF > "$SCRIPTS_DIR/run-playground.sh"
 #!/bin/bash
+AI_DIR="${AI_DIR}"
+EOF
+cat << 'EOF' >> "$SCRIPTS_DIR/run-playground.sh"
 VIDEO_GID=$(getent group video | cut -d: -f3)
 RENDER_GID=$(getent group render | cut -d: -f3)
 
@@ -259,7 +280,7 @@ RENDER_GID=$(getent group render | cut -d: -f3)
 xhost +local:docker > /dev/null 2>&1
 
 # FORCE a clean build to ensure the missing libraries are actually downloaded
-sudo docker build --no-cache -t xpu-playground:latest -f "$HOME/ai/scripts/playground/Dockerfile" "$HOME/ai/scripts/playground"
+sudo docker build --no-cache -t xpu-playground:latest -f "$AI_DIR/scripts/playground/Dockerfile" "$AI_DIR/scripts/playground"
 
 # Launch the app with full X11 mapping and local persistence
 sudo docker run -it --rm \
@@ -272,7 +293,7 @@ sudo docker run -it --rm \
     -u $(id -u):$(id -g) \
     -v /etc/passwd:/etc/passwd:ro \
     -v /etc/group:/etc/group:ro \
-    -v "$HOME/ai/playground:/playground" \
+    -v "$AI_DIR/playground:/playground" \
     -e HOME="/playground" \
     -w /playground \
     xpu-playground:latest
@@ -324,12 +345,15 @@ RUN mkdir -p /home/agent && chmod 777 /home/agent
 ENTRYPOINT ["openclaude"]
 EOF
 
-cat << 'EOF' > "$SCRIPTS_DIR/run-openclaude.sh"
+cat << EOF > "$SCRIPTS_DIR/run-openclaude.sh"
 #!/bin/bash
+AI_DIR="${AI_DIR}"
+EOF
+cat << 'EOF' >> "$SCRIPTS_DIR/run-openclaude.sh"
 VIDEO_GID=$(getent group video | cut -d: -f3)
 RENDER_GID=$(getent group render | cut -d: -f3)
 
-sudo docker build -t xpu-openclaude:latest -f "$HOME/ai/scripts/openclaude/Dockerfile" "$HOME/ai/scripts/openclaude" -q
+sudo docker build -t xpu-openclaude:latest -f "$AI_DIR/scripts/openclaude/Dockerfile" "$AI_DIR/scripts/openclaude" -q
 
 mkdir -p "$HOME/.openclaude"
 
