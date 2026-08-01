@@ -24,6 +24,23 @@ wget -O ~/Downloads/code.rpm https://vscode.download.prss.microsoft.com/dbazure/
 sudo dnf install ~/Downloads/chrome.rpm ~/Downloads/code.rpm -y
 # Login to chrome, login to msft account
 
+# Install Odin
+sudo dnf copr enable sisyphus1813/odin-lang -y
+sudo dnf install odin-lang ols clang -y
+echo 'export ODIN_ROOT="/usr/lib/odin"' >> ~/.bashrc
+####
+# In coderunner
+#
+# In "Echo-runner.executorMap":{
+# add 
+# "odin": "cd $dir && odin build $fileName -file -out:$fileNameWithoutExt && ./$fileNameWithoutExt; rm -f $fileNameWithoutExt",
+#
+# In "code-runner.executorMapByFileExtension": {
+# add
+# ".odin": "cd $dir && odin build $fileName -file -out:$fileNameWithoutExt && ./$fileNameWithoutExt; rm -f $fileNameWithoutExt",
+#
+####
+
 # Rclone setup - Setup your browser and login to msft account first
 mkdir ~/OneDrive
 rclone config
